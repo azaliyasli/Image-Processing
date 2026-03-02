@@ -1,3 +1,4 @@
+import numpy as np
 from PIL import Image
 
 # Upload Image
@@ -93,19 +94,41 @@ ninty_degree_clockwise_rot_img.show()
 one_hundred_eighty_rot_img.show()
 
 # 5&6. Negative Image
-# Define a new image
+# Convert original image to array
+img_org_arr = np.array(img_org)
+
+# Define a new image for negative image
 neg_width = img_org.size[0]
 neg_height = img_org.size[1]
 
 neg_img = Image.new("RGB", (neg_width, neg_height))
 
+neg_img_arr = np.zeros_like(img_org_arr)
+
+# Define a new image for restored image
+restored_width = img_org.size[0]
+restored_height = img_org.size[1]
+
+restored_img = Image.new("RGB", (restored_width, restored_height))
+
+restored_img_arr = np.zeros_like(img_org_arr)
+
 # Take negative of image
 for i in range(0,neg_width):
     for j in range(0,neg_height):
         for k in range(0,3):
-            neg_img[i, j, k] = 255 - img_org_arr[i, j, k]
+            neg_img_arr[i, j, k] = 255 - img_org_arr[i, j, k]
+
+neg_img = Image.fromarray(neg_img_arr)
 
 # Take positive of negative image
+for i in range(0,restored_width):
+    for j in range(0,restored_height):
+        for k in range(0,3):
+            restored_img_arr[i, j, k] = 255 - neg_img_arr[i, j, k]
+
+restored_img = Image.fromarray(restored_img_arr)
 
 img_org.show()
 neg_img.show()
+restored_img.show() # Image restored by subtracting negative image from 255 again
