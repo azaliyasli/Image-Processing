@@ -95,7 +95,7 @@ one_hundred_eighty_rot_img.show()
 
 # 5&6. Negative Image
 # Convert original image to array
-img_org_arr = np.array(img_org)
+img_org_arr_rgb = np.array(img_org)
 
 # Define a new image for negative image
 neg_width = img_org.size[0]
@@ -103,7 +103,7 @@ neg_height = img_org.size[1]
 
 neg_img = Image.new("RGB", (neg_width, neg_height))
 
-neg_img_arr = np.zeros_like(img_org_arr)
+neg_img_arr = np.zeros_like(img_org_arr_rgb)
 
 # Define a new image for restored image
 restored_width = img_org.size[0]
@@ -111,13 +111,13 @@ restored_height = img_org.size[1]
 
 restored_img = Image.new("RGB", (restored_width, restored_height))
 
-restored_img_arr = np.zeros_like(img_org_arr)
+restored_img_arr = np.zeros_like(img_org_arr_rgb)
 
 # Take negative of image
 for i in range(0,neg_width):
     for j in range(0,neg_height):
         for k in range(0,3):
-            neg_img_arr[i, j, k] = 255 - img_org_arr[i, j, k]
+            neg_img_arr[i, j, k] = 255 - img_org_arr_rgb[i, j, k]
 
 neg_img = Image.fromarray(neg_img_arr)
 
@@ -132,3 +132,44 @@ restored_img = Image.fromarray(restored_img_arr)
 img_org.show()
 neg_img.show()
 restored_img.show() # Image restored by subtracting negative image from 255 again
+
+# 7. Brightness Adjustment
+# Define a new image for brighter image
+br_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
+br_img_arr = br_img.load()
+
+# Define a new image for darker image
+dr_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
+dr_img_arr = dr_img.load()
+
+# Define difference value
+diff = 100
+
+# Brighten image
+for i in range(img_org.size[0]):
+    for j in range(img_org.size[1]):
+        # Get original colors
+        r, g, b = img_org_arr[i, j]
+
+        # Brighten the image
+        br_img_arr[i, j] = (min(255, r + 100), min(255, g + 100), min(255, b + 100)) # add +100 to each pixel, min function used to prevent not to exceed limit 255
+
+        # Darken the img
+        dr_img_arr[i, j] = (max(0, r - 100), max(0, g - 100), max(0, b - 100)) # subtract -100 from each pixel, max function used to prevent not to get negative values
+
+img_org.show()
+br_img.show()
+dr_img.show()
+
+# 8. RGB to Greyscale
+grey_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
+grey_img_arr = grey_img.load()
+
+for i in range(0,img_org.size[0]):
+    for j in range(0,img_org.size[1]):
+        r, g, b = img_org_arr[i, j]
+
+        grey_img_arr[i, j] = ((r+g+b)//3, (r+g+b)//3, (r+g+b)//3)
+
+img_org.show()
+grey_img.show()
