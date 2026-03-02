@@ -169,7 +169,7 @@ for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
         r, g, b = img_org_arr[i, j]
 
-        grey_img_arr[i, j] = ((r+g+b)//3, (r+g+b)//3, (r+g+b)//3)
+        grey_img_arr[i, j] = ((r+g+b)//3, (r+g+b)//3, (r+g+b)//3) # each pixel value divided by 3 to naturalize rgb colors
 
 img_org.show()
 grey_img.show()
