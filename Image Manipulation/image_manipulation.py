@@ -60,7 +60,7 @@ img_org.show()
 symmetric_img_vertical.show() # Image expected to look mirrored
 symmetric_img_horizontal.show() # Image expected to look upside down
 
-# 4. Rotation
+# 3. Rotation
 # Define a new image
 rot_width = img_org.size[0]
 rot_height = img_org.size[1]
@@ -93,7 +93,7 @@ ninty_degree_counter_clockwise_rot_img.show()
 ninty_degree_clockwise_rot_img.show()
 one_hundred_eighty_rot_img.show()
 
-# 5&6. Negative Image
+# 4. Negative Image
 # Convert original image to array
 img_org_arr_rgb = np.array(img_org)
 
@@ -103,7 +103,7 @@ neg_height = img_org.size[1]
 
 neg_img = Image.new("RGB", (neg_width, neg_height))
 
-neg_img_arr = np.zeros_like(img_org_arr_rgb)
+neg_img_arr = np.array(img_org_arr_rgb)
 
 # Define a new image for restored image
 restored_width = img_org.size[0]
@@ -111,7 +111,7 @@ restored_height = img_org.size[1]
 
 restored_img = Image.new("RGB", (restored_width, restored_height))
 
-restored_img_arr = np.zeros_like(img_org_arr_rgb)
+restored_img_arr = np.array(img_org_arr_rgb)
 
 # Take negative of image
 for i in range(0,neg_width):
@@ -133,7 +133,7 @@ img_org.show()
 neg_img.show()
 restored_img.show() # Image restored by subtracting negative image from 255 again
 
-# 7. Brightness Adjustment
+# 5. Brightness Adjustment
 # Define a new image for brighter image
 br_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
 br_img_arr = br_img.load()
@@ -161,7 +161,7 @@ img_org.show()
 br_img.show()
 dr_img.show()
 
-# 8. RGB to Greyscale
+# 6. RGB to Greyscale
 grey_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
 grey_img_arr = grey_img.load()
 
@@ -174,7 +174,7 @@ for i in range(0,img_org.size[0]):
 img_org.show()
 grey_img.show()
 
-# 9. Convert to Sepia
+# 7. Convert to Sepia
 sepia_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
 sepia_img_arr = sepia_img.load()
 
