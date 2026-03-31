@@ -16,7 +16,7 @@ for i in range(0, img.size[0]):
         b_sum += img_arr[i,j]
 brightness = b_sum / (img.size[0]*img.size[1])
 
-print("Brightness: ", brightness)
+print(f"Brightness: ", brightness)
 
 # Calculate Contrast
 for i in range(0, img.size[0]):
