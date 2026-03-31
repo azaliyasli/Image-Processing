@@ -95,29 +95,25 @@ one_hundred_eighty_rot_img.show()
 
 # 4. Negative Image
 # Convert original image to array
-img_org_arr_rgb = np.array(img_org)
+img_org_arr_nump = np.array(img_org)
 
 # Define a new image for negative image
-neg_width = img_org.size[0]
-neg_height = img_org.size[1]
+neg_width = img_org.shape[0]
+neg_height = img_org.shape[1]
 
-neg_img = Image.new("RGB", (neg_width, neg_height))
-
-neg_img_arr = np.array(img_org_arr_rgb)
+neg_img_arr = np.array(img_org_arr_nump)
 
 # Define a new image for restored image
-restored_width = img_org.size[0]
-restored_height = img_org.size[1]
+restored_width = img_org.shape[0]
+restored_height = img_org.shape[1]
 
-restored_img = Image.new("RGB", (restored_width, restored_height))
-
-restored_img_arr = np.array(img_org_arr_rgb)
+restored_img_arr = np.array(img_org_arr_nump)
 
 # Take negative of image
 for i in range(0,neg_width):
     for j in range(0,neg_height):
         for k in range(0,3):
-            neg_img_arr[i, j, k] = 255 - img_org_arr_rgb[i, j, k]
+            neg_img_arr[i, j, k] = 255 - img_org_arr_nump[i, j, k]
 
 neg_img = Image.fromarray(neg_img_arr)
 
@@ -142,10 +138,7 @@ br_img_arr = br_img.load()
 dr_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
 dr_img_arr = dr_img.load()
 
-# Define difference value
-diff = 100
-
-# Brighten image
+# Brighten & Darken image
 for i in range(img_org.size[0]):
     for j in range(img_org.size[1]):
         # Get original colors
@@ -161,7 +154,7 @@ img_org.show()
 br_img.show()
 dr_img.show()
 
-# 6. RGB to Greyscale
+# 6. RGB to Grayscale
 grey_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
 grey_img_arr = grey_img.load()
 
