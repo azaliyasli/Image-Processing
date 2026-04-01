@@ -44,12 +44,12 @@ symmetric_img_vertical_arr = symmetric_img_vertical.load()
 # Symmetry along X axis
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
-        symmetric_img_horizontal_arr[i, (img_org.size[0]-j)-1] = img_org_arr[i, j]
+        symmetric_img_horizontal_arr[i, (img_org.size[1]-j)-1] = img_org_arr[i, j]
 
 # Symmetry along Y axis
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
-        symmetric_img_vertical_arr[(img_org.size[1]-i)-1, j] = img_org_arr[i, j]
+        symmetric_img_vertical_arr[(img_org.size[0]-i)-1, j] = img_org_arr[i, j]
 
 img_org.show()
 symmetric_img_vertical.show() # Image expected to look mirrored
