@@ -74,7 +74,7 @@ for i in range(0,img_org.size[0]):
 # Rotate 180 degree
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
-        one_hundred_eighty_rot_img_arr[(img_org.size[1]-i)-1, (img_org.size[0]-j)-1] = img_org_arr[i, j]
+        one_hundred_eighty_rot_img_arr[(img_org.size[0]-i)-1, (img_org.size[1]-j)-1] = img_org_arr[i, j]
 
 # Rotate 90 degree clockwise (Optional)
 for i in range(0,img_org.size[0]):
