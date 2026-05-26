@@ -69,7 +69,7 @@ ninty_degree_clockwise_rot_img_arr = ninty_degree_clockwise_rot_img.load()
 # Rotate 90 degree counter-clockwise
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
-        ninty_degree_counter_clockwise_rot_img_arr[j, (img_org.size[1]-i)-1] = img_org_arr[i, j]
+        ninty_degree_counter_clockwise_rot_img_arr[j, (img_org.size[0]-i)-1] = img_org_arr[i, j]
 
 # Rotate 180 degree
 for i in range(0,img_org.size[0]):
@@ -79,7 +79,7 @@ for i in range(0,img_org.size[0]):
 # Rotate 90 degree clockwise (Optional)
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
-        ninty_degree_clockwise_rot_img_arr[(img_org.size[0]-j)-1, i] = img_org_arr[i, j]
+        ninty_degree_clockwise_rot_img_arr[(img_org.size[1]-j)-1, i] = img_org_arr[i, j]
 
 ninty_degree_counter_clockwise_rot_img.show()
 ninty_degree_clockwise_rot_img.show()
@@ -141,14 +141,14 @@ br_img.show()
 dr_img.show()
 
 # 6. RGB to Grayscale
-grey_img = Image.new("RGB", (img_org.size[0], img_org.size[1]))
+grey_img = Image.new("L", (img_org.size[0], img_org.size[1]))
 grey_img_arr = grey_img.load()
 
 for i in range(0,img_org.size[0]):
     for j in range(0,img_org.size[1]):
         r, g, b = img_org_arr[i, j]
 
-        grey_img_arr[i, j] = ((r+g+b)//3, (r+g+b)//3, (r+g+b)//3) # each pixel value divided by 3 to naturalize rgb colors
+        grey_img_arr[i, j] = (r+g+b)//3 # each pixel value divided by 3 to naturalize rgb colors
 
 img_org.show()
 grey_img.show()
